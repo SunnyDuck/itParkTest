@@ -1,0 +1,40 @@
+import {Scene} from "phaser";
+import GameBackground from "@/prefabs/GameBackground";
+import MeasureMain from "@/prefabs/MeasureMain";
+import Rubin from "@/prefabs/Rubin";
+import Scale from "@/prefabs/Scale";
+import Scale1 from "@/prefabs/Scale1";
+import Robot from "@/prefabs/Robot";
+import Button from "@/prefabs/Button";
+import Hammer from "@/prefabs/Hammer";
+import ImpactForceScale from "@/prefabs/ImpactForceScale";
+import GameStartButton from "@/prefabs/GameStartButton";
+
+export default class GameScene extends Scene {
+    constructor() {
+        super('GameScene')
+    }
+
+    create(){
+        const background = new GameBackground(this, 0, 0)
+        const measureMain = new MeasureMain(this, 60,15)
+        const rubin = new Rubin(this, 181,60)
+        const scale = new Scale(this, 60, 520)
+        const impactForceScale = new ImpactForceScale(this, 82, 606, 44, 0, 0x00ff00) //height от 0 до 172
+        const scale1 = new Scale1(this, 60,520)
+        const robot = new Robot(this, 310, 565 )
+        const button = new Button(this, 181,380)
+        const blocks = this.add.group({key: 'block', repeat: 7, setScale: {x: 0.5, y: 0.5}})
+
+        const hammer = new Hammer(this, 260, 370)
+        const gameStartButton = new GameStartButton(this, 180, 592)
+        gameStartButton.on('pointerdown', () =>
+            gameStartButton.gameStart(hammer, impactForceScale, button))
+        console.log('All is okey!')
+    }
+
+    update(time: number, delta: number) {
+
+    }
+
+}
