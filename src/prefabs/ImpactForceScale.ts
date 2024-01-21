@@ -9,8 +9,9 @@ export default class ImpactForceScale extends GameObjects.Rectangle{
         this.scene.add.existing(this)
     }
 
-    intervalId: null | NodeJS.Timeout = null
-    randomScale: number
+    private intervalId: null | NodeJS.Timeout = null
+    private randomScale: number
+    tween = this.scene.tweens
 
     startForceScale(start: boolean){
 
@@ -26,17 +27,23 @@ export default class ImpactForceScale extends GameObjects.Rectangle{
     }
 
     stopForceScale(){
+        this.scene.tweens.killAll()
         clearInterval(this.intervalId);
         console.log(this.randomScale / 172 * 100 + '% сила удара')
         this.intervalId = null;
     }
 
     scaleChange(scale: number) {
-        this.scene.tweens.add({
+        this.tween.add({
             targets: this,
             height: scale,
             duration: 500,
         })
+
+    }
+
+    getResults(){
+        return this.randomScale / 172 * 100
     }
 
 }
