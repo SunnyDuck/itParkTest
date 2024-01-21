@@ -11,7 +11,7 @@ export default class Button extends GameObjects.Sprite{
     onPressed() {
         setTimeout(() => {
             this.setTexture('button_active')
-        }, 1000)
+        }, 500)
     }
 
     offPressed() {

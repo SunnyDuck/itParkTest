@@ -27,9 +27,9 @@ export default class ImpactForceScale extends GameObjects.Rectangle{
     }
 
     stopForceScale(){
-        this.scene.tweens.killAll()
+        console.log(this.height / 172 * 100)
+        this.scene.tweens.killTweensOf(this)
         clearInterval(this.intervalId);
-        console.log(this.randomScale / 172 * 100 + '% сила удара')
         this.intervalId = null;
     }
 
@@ -43,7 +43,7 @@ export default class ImpactForceScale extends GameObjects.Rectangle{
     }
 
     getResults(){
-        return this.randomScale / 172 * 100
+        return this.height / 172 * 100
     }
 
 }

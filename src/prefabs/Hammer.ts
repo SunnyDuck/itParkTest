@@ -14,7 +14,8 @@ export default class Hammer extends GameObjects.Sprite{
             targets: this,
             angle: '+=90',
             y: 330,
-            x: 260
+            x: 260,
+            duration: 500
         })
     }
 
@@ -22,7 +23,8 @@ export default class Hammer extends GameObjects.Sprite{
         this.scene.tweens.add({
             targets: this,
             angle: '+=45',
-                y: 330
+            y: 330,
+            duration: 500
         })
     }
 
@@ -31,7 +33,7 @@ export default class Hammer extends GameObjects.Sprite{
             targets: this,
             angle: '-=90',
             x: 210,
-            duration: 1000,
+            duration: 500,
         })
     }
 
