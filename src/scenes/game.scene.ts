@@ -11,6 +11,7 @@ import ImpactForceScale from "@/prefabs/ImpactForceScale";
 import GameStartButton from "@/prefabs/GameStartButton";
 import ScaleBlock from "@/prefabs/scaleBlock";
 import LayerGlow from "@/prefabs/layerGlow";
+import TextField from "@/prefabs/TextField";
 
 export default class GameScene extends Scene {
     constructor() {
@@ -37,6 +38,7 @@ export default class GameScene extends Scene {
         const button = new Button(this, 181,380)
         const hammer = new Hammer(this, 260, 370)
         const gameStartButton = new GameStartButton(this, 180, 592)
+        //const textField = new TextField(this, 20, 20, 'greetingsText')
         gameStartButton.on('pointerdown', () =>
             gameStartButton.gameStart(
                 hammer,

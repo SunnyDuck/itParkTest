@@ -36,6 +36,18 @@ export default class PreloadScene extends Scene {
     }
 
     preload(){
+
+        const progressBar = this.add.graphics();
+        const progressBox = this.add.graphics();
+        progressBox.fillStyle(0x222222, 0.8);
+        progressBox.fillRect(55, 300, 250, 50);
+
+        this.load.on('progress', function (value: number) {
+            progressBar.clear();
+            progressBar.fillStyle(0xffffff, 1);
+            progressBar.fillRect(65, 310, 230 * value, 30);
+        });
+
         this.load.image('bg_top', bg_top)
         this.load.image('button', button)
         this.load.image('button_active', button_active)
@@ -66,9 +78,14 @@ export default class PreloadScene extends Scene {
         this.load.image('rectangle6', rectangle6)
         this.load.image('rectangle7', rectangle7)
         this.load.image('rubinBackground', rubinBackground)
+
+        for (let i = 0; i < 500; i++) {
+            this.load.image('logo'+i, rubinBackground);
+        }
+
     }
 
     create() {
-        this.scene.start('GameScene');
+        this.scene.start('GameScene')
     }
 }
