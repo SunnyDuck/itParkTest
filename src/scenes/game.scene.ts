@@ -45,7 +45,7 @@ export default class GameScene extends Scene {
         const button = new Button(this, 181, 380)
         const hammer = new Hammer(this, 260, 370)
         const gameStartButton = new GameStartButton(this, 180, 592)
-        new TextField(this, 100, 100, 'greetingsText') //поправить
+        const textField = new TextField(this, 115, 480, 'greetingsText') //поправить
         gameStartButton.on('pointerdown', () =>
             gameStartButton.gameStart(
                 hammer,
@@ -60,6 +60,7 @@ export default class GameScene extends Scene {
                 rectangle7,
                 robot,
                 prizeGlow,
+                textField,
             ),
         )
         console.log('All is okey!')

@@ -5,9 +5,10 @@ import Button from '@/prefabs/Button'
 import ScaleBlock from '@/prefabs/scaleBlock'
 import Robot from '@/prefabs/Robot'
 import LayerGlow from '@/prefabs/layerGlow'
+import TextField from '@/prefabs/TextField'
 
 export default class GameStartButton extends GameObjects.Sprite {
-    private _isStarted: string = 'wait'
+    private started: string = 'wait'
 
     constructor(scene: Scene, x: number, y: number) {
         super(scene, x, y, 'newGameButton')
@@ -43,31 +44,36 @@ export default class GameStartButton extends GameObjects.Sprite {
         result: number,
         robot: Robot,
         layerGlow: LayerGlow,
+        textField: TextField,
     ) {
         if (result <= 35) rec7.setTexture('rectangle7col')
         else if (result <= 55) {
             rec7.setTexture('rectangle7col')
             rec6.setTexture('rectangle6col')
             robot.setTexture('robot_2')
+            textField.changeText('loseText')
         } else if (result <= 70) {
             rec7.setTexture('rectangle7col')
             rec6.setTexture('rectangle6col')
             rec5.setTexture('rectangle5col')
             robot.setTexture('robot_2')
-        } else if (result <= 82) {
+            textField.changeText('loseText')
+        } else if (result <= 80) {
             rec7.setTexture('rectangle7col')
             rec6.setTexture('rectangle6col')
             rec5.setTexture('rectangle5col')
             rec4.setTexture('rectangle4col')
             robot.setTexture('robot_2')
-        } else if (result <= 92) {
+            textField.changeText('loseText')
+        } else if (result <= 90) {
             rec7.setTexture('rectangle7col')
             rec6.setTexture('rectangle6col')
             rec5.setTexture('rectangle5col')
             rec4.setTexture('rectangle4col')
             rec3.setTexture('rectangle3col')
             robot.setTexture('robot_2')
-        } else if (result <= 98) {
+            textField.changeText('loseText')
+        } else if (result <= 95) {
             rec7.setTexture('rectangle7col')
             rec6.setTexture('rectangle6col')
             rec5.setTexture('rectangle5col')
@@ -75,6 +81,7 @@ export default class GameStartButton extends GameObjects.Sprite {
             rec3.setTexture('rectangle3col')
             rec2.setTexture('rectangle2col')
             robot.setTexture('robot_2')
+            textField.changeText('loseText')
         } else {
             rec7.setTexture('rectangle7col')
             rec6.setTexture('rectangle6col')
@@ -85,6 +92,7 @@ export default class GameStartButton extends GameObjects.Sprite {
             rec1.setTexture('rectangle1col')
             robot.setTexture('robot_3')
             layerGlow.layerGlow()
+            textField.changeText('winText')
         }
     }
     rectanglesColorChangerStart(
@@ -97,6 +105,7 @@ export default class GameStartButton extends GameObjects.Sprite {
         rec7: ScaleBlock,
         robot: Robot,
         layerGlow: LayerGlow,
+        textField: TextField,
     ) {
         rec7.setTexture('rectangle7')
         rec6.setTexture('rectangle6')
@@ -107,6 +116,7 @@ export default class GameStartButton extends GameObjects.Sprite {
         rec1.setTexture('rectangle1')
         robot.setTexture('robot_1')
         layerGlow.setGlowAlpha(0)
+        textField.changeText('gameText')
     }
     gameStart(
         hammer: Hammer,
@@ -121,24 +131,26 @@ export default class GameStartButton extends GameObjects.Sprite {
         rec7: ScaleBlock,
         robot: Robot,
         layerGlow: LayerGlow,
+        textField: TextField,
     ) {
-        if (this._isStarted === 'wait') {
-            this._isStarted = 'firstStart'
+        if (this.started === 'wait') {
+            this.started = 'firstStart'
         }
 
-        switch (this._isStarted) {
+        switch (this.started) {
             case 'firstStart':
                 hammer.hammerHitPosition()
                 this.setTexture('hitButton')
                 impactForceScale.startForceScale(true)
-                this._isStarted = 'hit'
+                this.started = 'hit'
+                textField.changeText('gameText')
                 break
             case 'start':
                 hammer.hammerStartPosition()
                 this.setTexture('hitButton')
                 impactForceScale.startForceScale(true)
                 button.offPressed()
-                this._isStarted = 'hit'
+                this.started = 'hit'
                 this.rectanglesColorChangerStart(
                     rec1,
                     rec2,
@@ -149,6 +161,7 @@ export default class GameStartButton extends GameObjects.Sprite {
                     rec7,
                     robot,
                     layerGlow,
+                    textField,
                 )
                 break
             case 'hit':
@@ -156,7 +169,7 @@ export default class GameStartButton extends GameObjects.Sprite {
                 impactForceScale.startForceScale(false)
                 hammer.hammerHit()
                 button.onPressed()
-                this._isStarted = 'start'
+                this.started = 'start'
                 this.rectanglesColorChangerEnd(
                     rec1,
                     rec2,
@@ -168,6 +181,7 @@ export default class GameStartButton extends GameObjects.Sprite {
                     impactForceScale.getResults(),
                     robot,
                     layerGlow,
+                    textField,
                 )
                 break
         }
