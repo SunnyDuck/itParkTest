@@ -38,7 +38,7 @@ export default class GameScene extends Scene {
         const button = new Button(this, 181,380)
         const hammer = new Hammer(this, 260, 370)
         const gameStartButton = new GameStartButton(this, 180, 592)
-        //const textField = new TextField(this, 20, 20, 'greetingsText')
+        const textField = new TextField(this, 100, 100, 'greetingsText')
         gameStartButton.on('pointerdown', () =>
             gameStartButton.gameStart(
                 hammer,
