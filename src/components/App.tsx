@@ -1,18 +1,12 @@
-import React, {useEffect} from 'react';
-import classes from '@/components/App.module.css'
-import bg_top from '@/assets/bg_top.png'
-import {launchGame} from "@/phaserGame";
+import React, { useEffect } from 'react'
+import { launchGame } from '@/phaserGame'
 
 export const App = () => {
-
     useEffect(() => {
-        launchGame();
-    }, []);
+        launchGame()
+    }, [])
 
-    return (
-        <div>
-        </div>
-    );
-};
+    return <></>
+}
 
-export default App;
+export default App

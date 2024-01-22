@@ -1,9 +1,15 @@
-import {GameObjects, Scene} from 'phaser'
+import { GameObjects, Scene } from 'phaser'
 
-export default class ImpactForceScale extends GameObjects.Rectangle{
-
-    constructor(scene: Scene, x: number, y: number, width: number, height: number, color: number) {
-        super(scene, x, y, width, height, color);
+export default class ImpactForceScale extends GameObjects.Rectangle {
+    constructor(
+        scene: Scene,
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        color: number,
+    ) {
+        super(scene, x, y, width, height, color)
         this.setOrigin(0, 0)
         this.setRotation(Phaser.Math.DegToRad(180))
         this.scene.add.existing(this)
@@ -13,24 +19,23 @@ export default class ImpactForceScale extends GameObjects.Rectangle{
     private randomScale: number
     tween = this.scene.tweens
 
-    startForceScale(start: boolean){
-
-        if(!start){
+    startForceScale(start: boolean) {
+        if (!start) {
             this.stopForceScale()
             return
         }
 
-        this.intervalId = setInterval(()=> {
-            this.randomScale = Math.floor(Math.random() * 173);
+        this.intervalId = setInterval(() => {
+            this.randomScale = Math.floor(Math.random() * 173)
             this.scaleChange(this.randomScale)
         }, 500)
     }
 
-    stopForceScale(){
-        console.log(this.height / 172 * 100)
+    stopForceScale() {
+        console.log((this.height / 172) * 100)
         this.scene.tweens.killTweensOf(this)
-        clearInterval(this.intervalId);
-        this.intervalId = null;
+        clearInterval(this.intervalId)
+        this.intervalId = null
     }
 
     scaleChange(scale: number) {
@@ -39,11 +44,9 @@ export default class ImpactForceScale extends GameObjects.Rectangle{
             height: scale,
             duration: 500,
         })
-
     }
 
-    getResults(){
-        return this.height / 172 * 100
+    getResults() {
+        return (this.height / 172) * 100
     }
-
 }

@@ -1,9 +1,8 @@
-import {GameObjects, Scene} from 'phaser'
+import { GameObjects, Scene } from 'phaser'
 
-export default class Button extends GameObjects.Sprite{
-
-    constructor(scene: Scene, x: number, y:number) {
-        super(scene, x, y, 'button');
+export default class Button extends GameObjects.Sprite {
+    constructor(scene: Scene, x: number, y: number) {
+        super(scene, x, y, 'button')
         this.setScale(0.6)
         this.scene.add.existing(this)
     }
@@ -17,5 +16,4 @@ export default class Button extends GameObjects.Sprite{
     offPressed() {
         this.setTexture('button')
     }
-
 }
