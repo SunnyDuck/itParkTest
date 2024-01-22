@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-[RUN HERE](https://sunnyduck.github.io/itParkTest/)
+[RUN ON GITHUB PAGES](https://sunnyduck.github.io/itParkTest/)
 
 ## Installation and usage
 
