@@ -8,7 +8,7 @@
 
 [RUN ON GITHUB PAGES](https://sunnyduck.github.io/itParkTest/)
 
-##Decsription
+## Decsription
 "Mighty Hammer" is an incredibly simple and at the same time exciting application that allows you to test the strength of your hammer blow.
 
 ## Installation and usage
