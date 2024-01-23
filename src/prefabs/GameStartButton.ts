@@ -34,86 +34,61 @@ export default class GameStartButton extends GameObjects.Sprite {
     }
 
     rectanglesColorChangerEnd(
-        rec1: ScaleBlock,
-        rec2: ScaleBlock,
-        rec3: ScaleBlock,
-        rec4: ScaleBlock,
-        rec5: ScaleBlock,
-        rec6: ScaleBlock,
-        rec7: ScaleBlock,
+        rectangles: ScaleBlock[],
         result: number,
         robot: Robot,
         layerGlow: LayerGlow,
         textField: TextField,
     ) {
-        if (result <= 35) rec7.setTexture('rectangle7col')
+        if (result <= 35) rectangles[6].setTexture(`rectangle${7}col`)
         else if (result <= 55) {
-            rec7.setTexture('rectangle7col')
-            rec6.setTexture('rectangle6col')
+            for (let i = rectangles.length - 1; i > 4; i--) {
+                rectangles[i].setTexture(`rectangle${i + 1}col`)
+            }
             robot.setTexture('robot_2')
             textField.changeText('loseText')
         } else if (result <= 70) {
-            rec7.setTexture('rectangle7col')
-            rec6.setTexture('rectangle6col')
-            rec5.setTexture('rectangle5col')
+            for (let i = rectangles.length - 1; i > 3; i--) {
+                rectangles[i].setTexture(`rectangle${i + 1}col`)
+            }
             robot.setTexture('robot_2')
             textField.changeText('loseText')
         } else if (result <= 80) {
-            rec7.setTexture('rectangle7col')
-            rec6.setTexture('rectangle6col')
-            rec5.setTexture('rectangle5col')
-            rec4.setTexture('rectangle4col')
+            for (let i = rectangles.length - 1; i > 2; i--) {
+                rectangles[i].setTexture(`rectangle${i + 1}col`)
+            }
             robot.setTexture('robot_2')
             textField.changeText('loseText')
         } else if (result <= 90) {
-            rec7.setTexture('rectangle7col')
-            rec6.setTexture('rectangle6col')
-            rec5.setTexture('rectangle5col')
-            rec4.setTexture('rectangle4col')
-            rec3.setTexture('rectangle3col')
+            for (let i = rectangles.length - 1; i > 1; i--) {
+                rectangles[i].setTexture(`rectangle${i + 1}col`)
+            }
             robot.setTexture('robot_2')
             textField.changeText('loseText')
         } else if (result <= 95) {
-            rec7.setTexture('rectangle7col')
-            rec6.setTexture('rectangle6col')
-            rec5.setTexture('rectangle5col')
-            rec4.setTexture('rectangle4col')
-            rec3.setTexture('rectangle3col')
-            rec2.setTexture('rectangle2col')
+            for (let i = rectangles.length - 1; i > 0; i--) {
+                rectangles[i].setTexture(`rectangle${i + 1}col`)
+            }
             robot.setTexture('robot_2')
             textField.changeText('loseText')
         } else {
-            rec7.setTexture('rectangle7col')
-            rec6.setTexture('rectangle6col')
-            rec5.setTexture('rectangle5col')
-            rec4.setTexture('rectangle4col')
-            rec3.setTexture('rectangle3col')
-            rec2.setTexture('rectangle2col')
-            rec1.setTexture('rectangle1col')
+            for (let i = 0; i < rectangles.length; i++) {
+                rectangles[i].setTexture(`rectangle${i + 1}col`)
+            }
             robot.setTexture('robot_3')
             layerGlow.layerGlow()
             textField.changeText('winText')
         }
     }
     rectanglesColorChangerStart(
-        rec1: ScaleBlock,
-        rec2: ScaleBlock,
-        rec3: ScaleBlock,
-        rec4: ScaleBlock,
-        rec5: ScaleBlock,
-        rec6: ScaleBlock,
-        rec7: ScaleBlock,
+        rectangles: ScaleBlock[],
         robot: Robot,
         layerGlow: LayerGlow,
         textField: TextField,
     ) {
-        rec7.setTexture('rectangle7')
-        rec6.setTexture('rectangle6')
-        rec5.setTexture('rectangle5')
-        rec4.setTexture('rectangle4')
-        rec3.setTexture('rectangle3')
-        rec2.setTexture('rectangle2')
-        rec1.setTexture('rectangle1')
+        for (let i = 0; i < rectangles.length; i++) {
+            rectangles[i].setTexture(`rectangle${i + 1}`)
+        }
         robot.setTexture('robot_1')
         layerGlow.setGlowAlpha(0)
         textField.changeText('gameText')
@@ -122,13 +97,7 @@ export default class GameStartButton extends GameObjects.Sprite {
         hammer: Hammer,
         impactForceScale: ImpactForceScale,
         button: Button,
-        rec1: ScaleBlock,
-        rec2: ScaleBlock,
-        rec3: ScaleBlock,
-        rec4: ScaleBlock,
-        rec5: ScaleBlock,
-        rec6: ScaleBlock,
-        rec7: ScaleBlock,
+        rectangles: ScaleBlock[],
         robot: Robot,
         layerGlow: LayerGlow,
         textField: TextField,
@@ -152,13 +121,7 @@ export default class GameStartButton extends GameObjects.Sprite {
                 button.offPressed()
                 this.started = 'hit'
                 this.rectanglesColorChangerStart(
-                    rec1,
-                    rec2,
-                    rec3,
-                    rec4,
-                    rec5,
-                    rec6,
-                    rec7,
+                    rectangles,
                     robot,
                     layerGlow,
                     textField,
@@ -171,13 +134,7 @@ export default class GameStartButton extends GameObjects.Sprite {
                 button.onPressed()
                 this.started = 'start'
                 this.rectanglesColorChangerEnd(
-                    rec1,
-                    rec2,
-                    rec3,
-                    rec4,
-                    rec5,
-                    rec6,
-                    rec7,
+                    rectangles,
                     impactForceScale.getResults(),
                     robot,
                     layerGlow,

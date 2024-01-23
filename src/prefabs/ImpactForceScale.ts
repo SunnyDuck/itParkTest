@@ -32,7 +32,6 @@ export default class ImpactForceScale extends GameObjects.Rectangle {
     }
 
     stopForceScale() {
-        console.log((this.height / 172) * 100)
         this.scene.tweens.killTweensOf(this)
         clearInterval(this.intervalId)
         this.intervalId = null

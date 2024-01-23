@@ -35,13 +35,15 @@ export default class GameScene extends Scene {
         ) //height от 0 до 172
         new Scale1(this, 60, 520)
         const robot = new Robot(this, 310, 565)
-        const rectangle1 = new ScaleBlock(this, 182, 115, 'rectangle1')
-        const rectangle2 = new ScaleBlock(this, 182, 135, 'rectangle2')
-        const rectangle3 = new ScaleBlock(this, 182, 162, 'rectangle3')
-        const rectangle4 = new ScaleBlock(this, 182, 192, 'rectangle4')
-        const rectangle5 = new ScaleBlock(this, 182, 222, 'rectangle5')
-        const rectangle6 = new ScaleBlock(this, 182, 265, 'rectangle6')
-        const rectangle7 = new ScaleBlock(this, 182, 310, 'rectangle7')
+        const rectangles: ScaleBlock[] = [
+            new ScaleBlock(this, 182, 115, 'rectangle1'),
+            new ScaleBlock(this, 182, 135, 'rectangle2'),
+            new ScaleBlock(this, 182, 162, 'rectangle3'),
+            new ScaleBlock(this, 182, 192, 'rectangle4'),
+            new ScaleBlock(this, 182, 222, 'rectangle5'),
+            new ScaleBlock(this, 182, 265, 'rectangle6'),
+            new ScaleBlock(this, 182, 310, 'rectangle7'),
+        ]
         const button = new Button(this, 181, 380)
         const hammer = new Hammer(this, 260, 370)
         const gameStartButton = new GameStartButton(this, 180, 592)
@@ -51,13 +53,7 @@ export default class GameScene extends Scene {
                 hammer,
                 impactForceScale,
                 button,
-                rectangle1,
-                rectangle2,
-                rectangle3,
-                rectangle4,
-                rectangle5,
-                rectangle6,
-                rectangle7,
+                rectangles,
                 robot,
                 prizeGlow,
                 textField,
